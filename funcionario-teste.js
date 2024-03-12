@@ -31,3 +31,10 @@ class Desenvolvedor extends Funcionario{
         return `${this.nome} está programando em ${this.linguagem}.`
     }
 }
+
+var funcionario = document.getElementById("funcionario");
+    const nome = document.getElementById("nome");
+    const idade = document.getElementById("idade");
+    const cargo = document.getElementById("cargo");
+    const departamento = document.getElementById("departamento");
+    const linguagem = document.getElementById("linguagem");
