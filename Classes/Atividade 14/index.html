@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instanciar Classes a partir de um Formulário HTML</title>
+</head>
+<body>
+    <h2>Preencha o formulário:</h2>
+    <form id="formulario">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome"><br>
+
+        <label for="idade">Idade:</label><br>
+        <input type="number" id="idade" name="idade"><br>
+
+        <label for="cargo">Cargo:</label><br>
+        <input type="text" id="cargo" name="cargo"><br>
+
+        <label for="departamento">Departamento:</label><br>
+        <input type="text" id="departamento" name="departamento"><br>
+
+        <label for="linguagem">Linguagem de Programação:</label><br>
+        <input type="text" id="linguagem" name="linguagem"><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <h2>Informações do Funcionário:</h2>
+    <div id="apresentar"></div>
+    <div id="trabalhar"></div>
+    <div id="gerenciar"></div>
+    <div id="programar"></div>
+
+    <script>
+        class Funcionario{
+            constructor(nome,idade,cargo){
+                this.nome = nome;
+                this.idade = idade;
+                this.cargo = cargo;
+            }
+            seApresentar(){
+                return `Olá, meu nome é ${this.nome}, tenho ${this.idade} anos e trabalho como ${this.cargo}`;
+            }
+            trabalhar(){
+                return "Trabalho em andamento...";
+            }
+        }
+
+        class Gerente extends Funcionario{
+            constructor(nome,idade,cargo, departamento){
+                super(nome,idade,cargo);
+                this.departamento = departamento;
+            }
+            gerenciar(){
+                return "Gerenciando folha de pagamento.";
+            }
+        }
+
+        class Desenvolvedor extends Funcionario{
+            constructor(nome,idade,cargo,linguagem){
+                super(nome,idade,cargo);
+                this.linguagem = linguagem;
+            }
+            programar(){
+                return `${this.nome} está programando em ${this.linguagem}.`
+            }
+        }
+
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar o comportamento padrão de recarregar a página
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const cargo = document.getElementById('cargo').value;
+            const departamento = document.getElementById('departamento').value;
+            const linguagem = document.getElementById('linguagem').value;
+
+            let funcionario;
+
+            // Criar instâncias de Gerente e Desenvolvedor com os valores do formulário
+            if (cargo.toLowerCase() === 'gerente') {
+                funcionario = new Gerente(nome, idade, cargo, departamento);
+            } else {
+                funcionario = new Desenvolvedor(nome, idade, cargo, linguagem);
+            }
+
+            // Exibir as informações do funcionário na página
+
+            if(cargo.toLowerCase() == "desenvolvedor"){
+                document.getElementById('apresentar').innerHTML = funcionario.seApresentar();
+                document.getElementById('trabalhar').innerHTML = funcionario.trabalhar();                
+                document.getElementById('programar').innerHTML = funcionario.programar();
+            }
+            else{
+                document.getElementById('apresentar').innerHTML = funcionario.seApresentar();
+                document.getElementById('trabalhar').innerHTML = funcionario.trabalhar();
+                document.getElementById('gerenciar').innerHTML = funcionario.gerenciar();
+
+            }            
+        });
+    </script>
+</body>
+</html>

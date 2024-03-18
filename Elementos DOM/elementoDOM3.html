@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontrando elemento</title>
+</head>
+<body>
+    <h1>Usando seletor do DOM</h1>
+    <ul>
+        <li>Java</li>
+        <li>Python</li>
+        <li>NodeJS</li>        
+    </ul>
+    <div id="conteudo" name="divconteudo" class="mensagem">
+
+    </div>
+    <div name="divconteudo" class="mensagem">
+
+    </div>
+
+    <div name="divconteudo" class="mensagem">
+        <p>testando as cores</p>
+
+    </div>
+
+    <span id="novospan" class="novo">
+        texto no span
+    </span>
+
+    <div class="mensagem">
+        <p>textinho nova div</p>
+    </div>
+
+</body>
+<script>
+    elemento0 = document.getElementsByTagName('li')[0];
+    elemento0.style.color = 'blue';
+
+    elemento1 = document.getElementsByTagName('li')[1];
+    elemento1.style.color ='red';
+    
+    elemento2 = document.getElementsByTagName('li')[2];
+    elemento2.innerText = "SpringBoot"; //alterar o texto
+
+    //pegando o elemento da div
+    elementoDIV = document.getElementById("conteudo"); 
+    elementoDIV.style.backgroundColor = "silver";   
+    elementoDIV.innerHTML = "<p> Estou colocando a tag p dentro da div </p>"
+
+    //elemento pelo nome
+    elementoDivName = document.getElementsByName("divconteudo")[1];
+    elementoDivName.style.color = "blue";
+    elementoDivName.innerText = "Alterando apenas o texto, sem HTML"
+
+
+    //elemento pela Classe
+    elementoDivClass = document.getElementsByClassName("mensagem")[2];
+    elementoDivClass.style.color = "white";
+    elementoDivClass.style.backgroundColor = "black";
+
+    //elemento Query
+    //pegando o elemento pelo nome e classe
+    
+    elementoSpanClass = document.querySelector("span.novo");
+    
+    //também é possivel pegar pelo ID:
+    //elementoSpanClass = document.querySelector("#novospan");
+
+    elementoSpanClass.style.color = "yellow";
+    elementoSpanClass.style.backgroundColor = "black";
+
+    //Seletor de todos os elementos - usando a classe
+    elementoSeletor = document.querySelectorAll(".mensagem")[3];
+    elementoSeletor.innerHTML = "<p> texto incluído </p>"
+
+</script>
+</html>
